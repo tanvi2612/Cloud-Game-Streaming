@@ -1,0 +1,43 @@
+
+<link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/style.css" rel="stylesheet" type="text/css">
+<script src="https://js.stripe.com/v3/"></script>
+
+  <nav class="navbar sticky-top  bg-dark navbar-dark">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/dashboard">Krypton Cloud Gaming</a>
+    </div>
+    <div class="mr-auto">
+      <ul class="nav navbar-nav d-flex flex-row ">
+        <li class="nav-item">
+          <form action="/dashboard?_method=GET" method="POST">
+            <button type="submit" class="btn btn-secondary btn-block mx-2">Dashboard</button>
+          </form>
+        </li>
+        <li class="nav-item">
+          <form action="/settings" method="POST">
+            <button type="submit" class="btn btn-secondary btn-block mx-4">Settings</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul class="nav navbar-nav d-flex flex-row">
+        <li class="nav-item">
+          <form action="/all?_method=GET" method="POST">
+            <button type="submit" class="btn btn-secondary btn-block mx-2">More Games</button>
+          </form>
+        </li>
+        <li class="nav-item">
+          <form action="/logout?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-secondary btn-block mx-3">Log Out</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Links -->
+ <h1 style="color:rgba(255, 255, 255, 0.75)">Payment Successful.</h1>
+
+  </nav>

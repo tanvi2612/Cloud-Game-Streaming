@@ -1,0 +1,61 @@
+<link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/style.css" rel="stylesheet" type="text/css">
+
+
+<nav class="navbar sticky-top  bg-dark navbar-dark">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/dashboard">Krypton Cloud Gaming</a>
+  </div>
+  <div class="mr-auto">
+    <ul class="nav navbar-nav d-flex flex-row ">
+      <li class="nav-item">
+        <form action="/settings" method="POST">
+          <button type="submit" class="btn btn-secondary btn-block mx-3">Settings</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul class="nav navbar-nav d-flex flex-row">
+      <li class="nav-item">
+        <form action="/all?_method=GET" method="POST">
+          <button type="submit" class="btn btn-secondary btn-block mx-2">More Games</button>
+        </form>
+      </li>
+      <li class="nav-item">
+        <form action="/logout?_method=DELETE" method="POST">
+          <button type="submit" class="btn btn-secondary btn-block mx-3">Log Out</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div>
+  <h1 style="color:rgba(255, 255, 255, 0.75)">Welcome <%= user_name %>!</h1>
+
+  <div class="card-header" style="color:rgba(255, 255, 255, 0.75)">My Games</div>
+  <% games.forEach(function (Game) { %>
+     <!-- note you defined the field as Name not name -->
+
+  <div class="card-body">
+    <div class="card-deck">
+      <div class="card border-dark" >
+        <div class="card-body bg-dark text-white" >
+          <h5 class="card-title"><%= Game.username %></h5>
+          <p class="card-text"><%= Game.genre %></p>
+          <p class="card-text"><small class="text-muted"><i>Rating</i>:<%= Game.rating %></small></p>
+          <form action="/playgame?_method=DELETE" method="GET">
+            <button type="submit" class="btn btn-secondary btn-block">Play Now</button>
+          </form>
+        </div>
+      </div>
+      
+      
+    </div>
+
+  </div>
+  <% }) %>
+</div>

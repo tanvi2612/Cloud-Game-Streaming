@@ -1,0 +1,55 @@
+.container-fluid{
+    margin: auto;
+    padding: 40px;
+}
+body{
+    background-image:url('blue_body_top.jpg');
+    background-size:cover;
+}
+
+.form{
+    border-radius: 20px;
+    max-width: 400px;
+    margin: auto;
+  width: 50%;
+  border: 3px solid black;
+  padding: 10px;
+}
+
+.bt:hover{
+    color:rgba(255, 255, 255, 0.75);
+}
+.bt{
+    border:none;
+    color: rgba(255, 255, 255, 0.5);
+    background-color:transparent;
+
+}
+
+.Lform{
+    text-align: center;
+}
+
+
+
+.one { grid-area: login; }
+.two { grid-area: heading; }
+.three{grid-area: empty;}
+.grid-container {
+    width:100%;
+    display: grid;
+    grid-template-areas:'login heading empty ';
+    grid-gap: 10px;
+  /* background-color: #2196F3; */
+  /* padding: 10px; */
+  }
+
+label {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.two{
+    color: whitesmoke;
+    text-align: center;
+}
+

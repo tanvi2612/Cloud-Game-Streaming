@@ -1,0 +1,97 @@
+<link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/style.css" rel="stylesheet" type="text/css">
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripePublicKey = 'pk_test_9hE3TqonmPnmg5jExEY40g1X003FgmI9lB'
+    var stripe = Stripe('pk_test_9hE3TqonmPnmg5jExEY40g1X003FgmI9lB');
+    function checkouthandle(id){
+
+    console.log("donee1",id.innerHTML.slice(15))
+    gamename=id.innerHTML.slice(15)
+    fetch('/purchase?_'+gamename)
+    .then(response => response.json())
+    .then(json=>
+    stripe.redirectToCheckout({
+
+
+
+    // Make the id field from the Checkout Session creation API response
+    // available to this file, so you can provide it as parameter here
+    // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+    sessionId: json.session.id
+    }).then(function (result) {
+    console.log("donee")
+
+
+    console.log("result is",result)
+
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `result.error.message`.
+
+    })
+
+    )
+    };
+
+  </script>
+
+  <nav class="navbar sticky-top  bg-dark navbar-dark">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/dashboard">Krypton Cloud Gaming</a>
+    </div>
+    <div class="mr-auto">
+        <ul class="nav navbar-nav d-flex flex-row ">
+            <li class="nav-item">
+                <form action="/dashboard?_method=GET" method="POST">
+                    <button type="submit" class="btn btn-secondary btn-block mx-2">Dashboard</button>
+                </form>
+            </li>
+            <li class="nav-item">
+                <form action="/settings" method="POST">
+                    <button type="submit" class="btn btn-secondary btn-block mx-4">Settings</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <ul class="nav navbar-nav d-flex flex-row">
+            <li class="nav-item">
+                <form action="/all?_method=GET" method="POST">
+                    <button type="submit" class="btn btn-secondary btn-block mx-2">More Games</button>
+                </form>
+            </li>
+            <li class="nav-item">
+                <form action="/logout?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-secondary btn-block mx-3">Log Out</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div >
+    <div class="card-header" style="color:rgba(255, 255, 255, 0.5)">Store</div>
+    <% games.forEach(function (Game) { %>
+    <!-- note you defined the field as Name not name -->
+
+    <div class="card-body">
+        <div class="card-deck">
+            <div class="card border-dark">
+                <div class="card-body bg-dark text-white">
+                    <h5 class="card-title"><%= Game.username %></h5>
+                    <p class="card-text"><%= Game.genre %></p>
+                    <p class="card-text"><small class="text-muted"><i>Rating</i>:<%= Game.rating %></small></p>
+                  <button  type="submit" class="btn btn-secondary btn-block" onclick="checkouthandle(this)">Pay inr 100 for <%= Game.username %>
+                  </button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <% }) %>
+</div>
